@@ -18,6 +18,11 @@ public class Main {
             ctx.result("Resposta do Servidor ID: " + serverId);
 
         });
+
+        app.get("/alomundo", ctx -> {
+            String serverId = System.getenv("SERVER_ID");
+            ctx.result("Alo Mundo respondido por:" + serverId);
+        });
     }
 }
 /*
@@ -26,6 +31,19 @@ for /l %i in (1,1,100) do curl http://localhost:7000/
 
 Para rodar o Jconsole: "C:\Program Files\Java\jdk-25\bin\jconsole.exe"
 
-docker run -d --name meu-nginx -p 80:80 -v "%cd%/nginx.conf:/etc/nginx/nginx.conf" nginx
+Para pausar um container use docker stop
+
+Para terminar um container use docker rm
+
+O ponto no docker significa diretorio atual, ele
+pega todos os arquivos e pastas na pasta atual e
+envia para o daemon do Docker
+
+docker build -t servico-ram-final .
+
+docker run -d --name javalin-1 -e SERVER_ID=8081 -p 8081:7000 servico-ram-final
+
+
+docker run -d --name meu-nginx -p 80:80 -v "C:\Users\romil\IdeaProjects\aps-ufpb\JavalinRAM\nginx.conf:/etc/nginx/nginx.conf" nginx
  */
 
